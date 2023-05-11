@@ -1,0 +1,92 @@
+.nav {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.903);
+    color: white;
+    padding: 0 8px;
+}
+
+.navLogo {
+    width: 120px;
+    height: 60px;
+    background-position: center;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.navWrapperLogo {
+    flex: 1;
+}
+
+.navWrapperFullInput {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.navWrapperInput {
+    background: white;
+    padding: 4px 6px;
+    height: 32px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    max-width: 250px;
+}
+
+.navInput {
+    outline: none;
+    background: transparent;
+    border: unset;
+    font-size: 18px;
+}
+
+.userEmail {
+    flex: 1;
+    color: aquamarine;
+    text-align: center;
+}
+
+.navLinks {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navLink {
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.navLink:hover {
+    color: rgb(205, 83, 7);
+    transition: 400ms;
+}
+
+.navSearchButton {
+    border: none;
+    background: white;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+
+}
+
+.navSearchButton:hover {
+    background: black;
+    color: white;
+
+}
+
+@keyframes open {
+    from {
+        transform: translate(0, -500px);
+    }
+
+    to {
+        transform: translate(0, 0);
+    }
+}
