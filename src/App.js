@@ -12,8 +12,7 @@ function App() {
     setCurrentUser(updatedCurrentUser);
   }
   const getCurrentUser = async () => {
-    const token = { Authorization: localStorage.getItem("Authorization") };
-    const user = await apiGet(GET_USER_BY_USERNAME_URL, token);
+    const user = await apiGet(GET_USER_BY_USERNAME_URL, "sendToken");
     if (user) {
       updateCurrentUser(user);
     }

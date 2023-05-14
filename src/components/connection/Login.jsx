@@ -33,8 +33,7 @@ function Login() {
             };
             const data = await apiPost(SIGNIN_URL, loginRequest);
             localStorage.setItem("Authorization", "Bearer " + data.jwt);
-            const token = { Authorization: localStorage.getItem("Authorization") };
-            const user = await apiGet(GET_USER_BY_USERNAME_URL, token);
+            const user = await apiGet(GET_USER_BY_USERNAME_URL, "sendToken");
             updateCurrentUser(user);
             setUsername("");
             setPassword("");
