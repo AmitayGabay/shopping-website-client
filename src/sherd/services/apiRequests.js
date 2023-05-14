@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const apiGet = async (url, token) => {
+const apiGet = async (url, sendToken) => {
     try {
         let { data } = await axios({
             method: "GET",
             url,
-            params: token
+            params: sendToken ? { Authorization: localStorage.getItem("Authorization") } : undefined
         })
         return data;
     }
@@ -14,13 +14,13 @@ const apiGet = async (url, token) => {
     }
 }
 
-const apiPost = async (url, body, token) => {
+const apiPost = async (url, body, sendToken) => {
     try {
         let { data } = await axios({
             method: "POST",
             url,
             data: body,
-            params: token
+            params: sendToken ? { Authorization: localStorage.getItem("Authorization") } : undefined
         })
         return data;
     }
@@ -29,13 +29,13 @@ const apiPost = async (url, body, token) => {
     }
 }
 
-const apiPut = async (url, body, token) => {
+const apiPut = async (url, body, sendToken) => {
     try {
         let { data } = await axios({
             method: "PUT",
             url,
             data: body,
-            params: token
+            params: sendToken ? { Authorization: localStorage.getItem("Authorization") } : undefined
         })
         return data;
     }
@@ -44,13 +44,13 @@ const apiPut = async (url, body, token) => {
     }
 }
 
-const apiDelete = async (url, body = {}, token) => {
+const apiDelete = async (url, body = {}, sendToken) => {
     try {
         let { data } = await axios({
             method: "DELETE",
             url,
             data: body,
-            params: token
+            params: sendToken ? { Authorization: localStorage.getItem("Authorization") } : undefined
         })
         return data;
     }
