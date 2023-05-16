@@ -5,6 +5,8 @@ import Search from '../../components/pages/search/Search';
 import Home from '../../components/pages/home/Home';
 import Login from '../../components/connection/Login';
 import Register from '../../components/registration/Register';
+import Orders from '../../components/pages/orders/Orders';
+import Favorites from '../../components/pages/favorites/Favorites';
 
 const AppRoutes = () => {
     return (
@@ -14,8 +16,8 @@ const AppRoutes = () => {
                 <Route path='search' element={<Search />} />
                 <Route path='sign-up' element={<Register />} />
                 <Route path='sign-in' element={<Login />} />
-                <Route path='favourites' element={<Search />} />
-                <Route path='orders' element={<Search />} />
+                <Route path='favorites' element={<Favorites />} />
+                <Route path='orders' element={<Orders />} />
             </Route>
         </Routes>
     )
