@@ -3,3 +3,23 @@
     background-size: cover;
     background-position: center;
 }
+
+.orderItemPaper {
+    text-align: center;
+}
+
+.wrapperOrderItemImage {
+    display: flex;
+    justify-content: center;
+}
+
+.orderItemImage {
+    height: 100px;
+    width: 100px;
+    background-size: cover;
+    background-position: center;
+}
+
+.zero {
+    color: rgb(161, 12, 12);
+}

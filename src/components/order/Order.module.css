@@ -1,0 +1,53 @@
+.orderPaper {
+    margin: 0 auto;
+    margin-bottom: 24px;
+    height: 200px;
+    width: 75%;
+}
+
+.modalCard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 650px;
+    height: 680px;
+    padding: 8px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.wrapperItems {
+    height: 350px;
+    overflow-y: scroll;
+    margin-bottom: 16px;
+}
+
+.closeWrapperItems {
+    height: 450px;
+    overflow-y: scroll;
+    margin-bottom: 16px;
+}
+
+.shippingAddress {
+    display: flex;
+    align-items: center;
+}
+
+.closedShippingAddress {
+    text-align: center;
+    font-weight: bold;
+    color: rgb(32, 139, 112);
+}
+
+.span {
+    font-size: 10px;
+}
+
+.payment {
+    margin-top: 16px;
+    text-align: center;
+}
