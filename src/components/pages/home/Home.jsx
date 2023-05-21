@@ -9,6 +9,7 @@ import UserContext from "../../../sherd/contexts/userContext";
 
 const Home = () => {
     const { currentUser, isRequestToGetCurrentUserDone } = useContext(UserContext);
+    const [isHomePage, setIsHomePage] = useState(true);
     const [itemsData, setItemsData] = useState(null);
     const [items, setItems] = useState([]);
 
@@ -52,8 +53,8 @@ const Home = () => {
             <Container maxWidth='xl'>
                 <Grid container spacing={3}>
                     {
-                        items?.map((item, i) =>
-                            <Item item={item} key={i} />
+                        items?.map((item) =>
+                            <Item item={item} key={item.id} isHomePage={isHomePage} />
                         )
                     }
                 </Grid>

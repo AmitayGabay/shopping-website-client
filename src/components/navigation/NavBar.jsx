@@ -18,7 +18,7 @@ const NavBar = () => {
     }
     const deleteUser = async () => {
         console.log('deleteUser')
-        await apiDelete(DELETE_USER_URL, "sendToken");
+        await apiDelete(DELETE_USER_URL, {}, "sendToken");
     }
 
     return (<>
@@ -44,7 +44,7 @@ const NavBar = () => {
                 )}
                 {isRequestToGetCurrentUserDone && currentUser &&
                     userNavBarLinks.map(({ value, to }) =>
-                        <Link className={style.navLink} key={to} to={to}
+                        <Link className={style.navLink} key={value} to={to}
                             onClick={async () => {
                                 if (value == "delete") {
                                     await deleteUser();

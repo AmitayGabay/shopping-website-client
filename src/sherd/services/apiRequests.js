@@ -14,7 +14,7 @@ const apiGet = async (url, sendToken) => {
     }
 }
 
-const apiPost = async (url, sendToken, body) => {
+const apiPost = async (url, body, sendToken) => {
     try {
         let { data } = await axios({
             method: "POST",
@@ -29,7 +29,7 @@ const apiPost = async (url, sendToken, body) => {
     }
 }
 
-const apiPut = async (url, sendToken, body) => {
+const apiPut = async (url, body, sendToken) => {
     try {
         let { data } = await axios({
             method: "PUT",
@@ -44,7 +44,7 @@ const apiPut = async (url, sendToken, body) => {
     }
 }
 
-const apiDelete = async (url, sendToken, body = {}) => {
+const apiDelete = async (url, body = {}, sendToken) => {
     try {
         let { data } = await axios({
             method: "DELETE",

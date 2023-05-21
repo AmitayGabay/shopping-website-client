@@ -26,8 +26,8 @@ const Favorites = () => {
             <Container maxWidth='xl'>
                 <Grid container spacing={3}>
                     {
-                        favorites?.map((favorite, i) =>
-                            <Item item={favorite} isFavoritePage={isFavoritePage} key={i} />
+                        favorites?.map((favorite) =>
+                            <Item item={favorite} isFavoritePage={isFavoritePage} key={favorite.id} />
                         )
                     }
                 </Grid>
