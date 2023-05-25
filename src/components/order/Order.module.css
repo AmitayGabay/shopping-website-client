@@ -1,14 +1,14 @@
 .orderPaper {
     margin: 0 auto;
     margin-bottom: 24px;
-    height: 200px;
+    height: 250px;
     width: 75%;
 }
 
 .openOrderPaper {
     margin: 0 auto;
     margin-bottom: 24px;
-    height: 200px;
+    height: 250px;
     width: 75%;
     background: rgb(86, 233, 201) !important;
 }

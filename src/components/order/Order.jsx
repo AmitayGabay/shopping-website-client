@@ -71,6 +71,7 @@ const Order = ({ order, getUserOrders }) => {
 
     return (
         <Paper className={orderStatus == "CLOSE" ? `${style.orderPaper}` : `${style.openOrderPaper}`} elevation={4}>
+            <h1 className={style.title}>Order number {order.id}</h1>
             <Box overflow={'hidden'} paddingX={1} display={"flex"} alignItems={"center"} justifyContent={"space-evenly"} padding={"8px"}>
                 <Typography sx={{ fontSize: "17px", lineHeight: "18px" }} whiteSpace={"pre-wrap"} variant='subtitle2' component="h2"><b>{(orderStatus != "CLOSE") ? "Order Opening Date:" : "Order Closing Date:"}</b> {orderDate}</Typography>
                 <Typography sx={{ fontSize: "17px", lineHeight: "18px" }} whiteSpace={"pre-wrap"} variant='subtitle2' component="h2"><b>Order Status:</b> {orderStatus}</Typography>

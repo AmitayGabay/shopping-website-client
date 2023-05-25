@@ -56,11 +56,18 @@ const NavBar = () => {
                                     navigate(to);
                                 }
                                 if (value == "delete") {
-                                    await deleteUser();
-                                    navigate(to);
-                                    window.location.reload(true);
+                                    const userPermission = prompt("Are you sure you want to delete your user?\n" +
+                                        "This action will delete all your data from the site, and this action cannot be undone!!!\n" +
+                                        "If so, enter 'delete' and click the 'OK' button");
+                                    if (userPermission?.toLowerCase() == "delete") {
+                                        await deleteUser();
+                                        localStorage.removeItem("Authorization");
+                                        updateCurrentUser(null);
+                                        navigate(to);
+                                        window.location.reload(true);
+                                    }
                                 }
-                                if (value == "sign out" || value == "delete") {
+                                if (value == "sign out") {
                                     localStorage.removeItem("Authorization");
                                     updateCurrentUser(null);
                                     navigate(to);
