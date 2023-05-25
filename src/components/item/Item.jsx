@@ -16,12 +16,10 @@ const Item = ({ item, isHomePage = false, isFavoritePage = false, isOrderPage = 
     const addToFavorite = async () => {
         await apiPost(ADD_TO_FAVORITES_URL, { id: item.id }, "sendToken");
         setIsFavoriteItem(true);
-        alert("The item has been added to favorites");
     }
     const removeFromFavorite = async () => {
         await apiDelete(REMOVE_FROM_FAVORITES_URL, { id: item.id }, "sendToken");
         setIsFavoriteItem(false);
-        alert("The item has been removed from favorites");
     }
     const addItemToOrder = async () => {
         if (amount > 1) {
@@ -31,7 +29,6 @@ const Item = ({ item, isHomePage = false, isFavoritePage = false, isOrderPage = 
             if (isOrderPage) {
                 updateTotalPrice(item.usd_price, "+");
             }
-            alert("The item has been successfully added to the order");
         } else if (amount > 0) {
             await apiPost(ADD_ITEM_TO_ORDER_URL, { id: item.id }, "sendToken");
             setAmount(amount - 1);
@@ -39,7 +36,6 @@ const Item = ({ item, isHomePage = false, isFavoritePage = false, isOrderPage = 
             if (isOrderPage) {
                 updateTotalPrice(item.usd_price, "+");
             }
-            alert("The item has been successfully added to the order");
         } else {
             alert("0 items left in stock. It is not possible to order more of the same item");
         }
@@ -50,13 +46,11 @@ const Item = ({ item, isHomePage = false, isFavoritePage = false, isOrderPage = 
             setCount(count - 1);
             setAmount(amount + 1);
             updateTotalPrice(item.usd_price, "-");
-            alert("The item has been successfully removed from the order");
         } else {
             await apiDelete(REMOVE_ITEM_FROM_ORDER_URL, { item_id: item.id, order_id: order.id }, "sendToken");
             setCount(count - 1);
             setAmount(amount + 1);
             updateTotalPrice(item.usd_price, "-");
-            alert("The item has been successfully removed from the order");
             setIsOrderedItem(false);
             getUserOrders();
         }
@@ -71,7 +65,7 @@ const Item = ({ item, isHomePage = false, isFavoritePage = false, isOrderPage = 
         }
     }, [amount]);
     const [count, setCount] = useState(
-        (currentUser && localStorage.getItem(`${currentUser?.id}count${item.id}`)) ?
+        (currentUser && localStorage.getItem(`${currentUser?.id}count${item.id}`)) && orderStatus != "CLOSE" ?
             JSON.parse(localStorage.getItem(`${currentUser.id}count${item.id}`)) : item.count
     );
     useEffect(() => {
@@ -79,19 +73,26 @@ const Item = ({ item, isHomePage = false, isFavoritePage = false, isOrderPage = 
             localStorage.setItem(`${currentUser.id}count${item.id}`, JSON.stringify(count));
         }
     }, [count]);
+    useEffect(() => {
+        if (orderStatus == "CLOSE") {
+            item.count = JSON.parse(localStorage.getItem(`${currentUser.id}count${item.id}`));
+            setCount(item.count);
+            localStorage.setItem(`${currentUser.id}count${item.id}`, JSON.stringify(0));
+        }
+    }, [orderStatus])
 
     return (
         <>
             {(isHomePage || (isFavoritePage && isFavoriteItem) || (isOrderPage && isOrderedItem)) &&
                 <Grid item lg={3} md={4} sm={6} xs={12}>
-                    <Paper className={isOrderPage && style.orderItemPaper} sx={{ paddingBottom: "18px" }} elevation={4}>
-                        <div className={isOrderPage && style.wrapperOrderItemImage}>
-                            <Box className={!isOrderPage ? style.itemImage : style.orderItemImage} sx={{ backgroundImage: `url(${item.picture})` }}></Box>
+                    <Paper className={isOrderPage ? `${style.orderItemPaper}` : undefined} sx={{ paddingBottom: "18px" }} elevation={4}>
+                        <div className={isOrderPage ? `${style.wrapperOrderItemImage}` : undefined}>
+                            <Box className={!isOrderPage ? `${style.itemImage}` : `${style.orderItemImage}`} sx={{ backgroundImage: `url(${item.picture})` }}></Box>
                         </div>
                         <Box overflow={'hidden'} paddingX={1}>
                             <Typography variant='h5' component="h2">{item.title}</Typography>
                             <Typography sx={{ fontSize: "17px", lineHeight: "18px" }} whiteSpace={"pre-wrap"} variant='subtitle2' component="h2"><b>price: {item.usd_price} $</b></Typography>
-                            <Typography className={!amount && style.zero} sx={{ fontSize: "17px", lineHeight: "18px" }} whiteSpace={"pre-wrap"} variant='subtitle2' component="h2">{!isOrderPage && amount ? "amount:" : "amount in the store:"}{amount ? amount : `${amount} items left in stock`}</Typography>
+                            <Typography className={!amount ? `${style.zero}` : undefined} sx={{ fontSize: "17px", lineHeight: "18px" }} whiteSpace={"pre-wrap"} variant='subtitle2' component="h2">{!isOrderPage && amount ? "amount:" : "amount in the store:"}{amount ? amount : `${amount} items left in stock`}</Typography>
                             {isOrderPage && <Typography sx={{ fontSize: "17px", lineHeight: "18px" }} whiteSpace={"pre-wrap"} variant='subtitle2' component="h2"><b>{"items in the order:"}{count}</b></Typography>}
                         </Box>
                         {currentUser && <Box marginTop={1} display={"flex"} alignItems={"center"} justifyContent="space-evenly">

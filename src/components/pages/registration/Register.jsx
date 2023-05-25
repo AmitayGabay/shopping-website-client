@@ -3,8 +3,8 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./Register.module.css";
 import { Link } from "react-router-dom";
-import { apiPost } from "../../sherd/services/apiRequests";
-import { REGISTER_URL } from "../../sherd/constants/urls";
+import { apiPost } from "../../../sherd/services/apiRequests";
+import { REGISTER_URL } from "../../../sherd/constants/urls";
 
 const EMAIL_REGEX = /^\S+@\S+\.\S+$/;
 const USERNAME_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -101,7 +101,7 @@ const Register = () => {
                 </section>
             ) : (
                 <section className={style.section}>
-                    <p ref={errRef} className={errMsg ? style.errmsg : style.offscreen}>{errMsg}</p>
+                    <p ref={errRef} className={errMsg ? `${style.errmsg}` : `${style.offscreen}`}>{errMsg}</p>
                     <h1>Sign Up</h1>
                     <form className={style.form} onSubmit={handleSubmit}>
                         <div className={style.name}>
@@ -117,7 +117,7 @@ const Register = () => {
                                     onFocus={() => setFirstNameFocus(true)}
                                     onBlur={() => setFirstNameFocus(false)}
                                 />
-                                <p id="uidnote" className={firstNameFocus && !firstName.trim().length ? style.instructions : style.offscreen}>
+                                <p id="uidnote" className={firstNameFocus && !firstName.trim().length ? `${style.instructions}` : `${style.offscreen}`}>
                                     <FontAwesomeIcon icon={faInfoCircle} />
                                     The first name is a required field.
                                 </p>
@@ -134,15 +134,15 @@ const Register = () => {
                                     onFocus={() => setLastNameFocus(true)}
                                     onBlur={() => setLastNameFocus(false)}
                                 />
-                                <p id="uidnote" className={lastNameFocus && !lastName.trim().length ? style.instructions : style.offscreen}>
+                                <p id="uidnote" className={lastNameFocus && !lastName.trim().length ? `${style.instructions}` : `${style.offscreen}`}>
                                     <FontAwesomeIcon icon={faInfoCircle} />
                                     The last name is a required field.
                                 </p>
                             </div>
                         </div>
                         <label className={style.label} htmlFor="email">Email:
-                            <FontAwesomeIcon icon={faCheck} className={validEmail ? style.valid : style.hide} />
-                            <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? style.hide : style.invalid} />
+                            <FontAwesomeIcon icon={faCheck} className={validEmail ? `${style.valid}` : `${style.hide}`} />
+                            <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? `${style.hide}` : `${style.invalid}`} />
                         </label>
                         <input className={style.input}
                             type="email"
@@ -154,7 +154,7 @@ const Register = () => {
                             onFocus={() => setEmailFocus(true)}
                             onBlur={() => setEmailFocus(false)}
                         />
-                        <p id="uidnote" className={emailFocus && !validEmail ? style.instructions : style.offscreen}>
+                        <p id="uidnote" className={emailFocus && !validEmail ? `${style.instructions}` : `${style.offscreen}`}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             The email is a required field. <br />
                             Must have a valid email.
@@ -178,14 +178,14 @@ const Register = () => {
                             onFocus={() => setAddressFocus(true)}
                             onBlur={() => setAddressFocus(false)}
                         />
-                        <p id="uidnote" className={addressFocus && !address.trim().length ? style.instructions : style.offscreen}>
+                        <p id="uidnote" className={addressFocus && !address.trim().length ? `${style.instructions}` : `${style.offscreen}`}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             The address is a required field.
                         </p>
                         <label className={style.label} htmlFor="username">
                             Username:
-                            <FontAwesomeIcon icon={faCheck} className={validName ? style.valid : style.hide} />
-                            <FontAwesomeIcon icon={faTimes} className={validName || !username ? style.hide : style.invalid} />
+                            <FontAwesomeIcon icon={faCheck} className={validName ? `${style.valid}` : `${style.hide}`} />
+                            <FontAwesomeIcon icon={faTimes} className={validName || !username ? `${style.hide}` : `${style.invalid}`} />
                         </label>
                         <input className={style.input}
                             type="text"
@@ -197,16 +197,16 @@ const Register = () => {
                             onFocus={() => setUserFocus(true)}
                             onBlur={() => setUserFocus(false)}
                         />
-                        <p id="uidnote" className={userFocus && !validName ? style.instructions : style.offscreen}>
+                        <p id="uidnote" className={userFocus && !validName ? `${style.instructions}` : `${style.offscreen}`}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            4 to 24 characters.<br />
+                            Must contain at least 4 characters.<br />
                             Must begin with a letter.<br />
                             Letters, numbers, underscores, hyphens allowed.
                         </p>
                         <label className={style.label} htmlFor="password">
                             Password:
-                            <FontAwesomeIcon icon={faCheck} className={validPassword ? style.valid : style.hide} />
-                            <FontAwesomeIcon icon={faTimes} className={validPassword || !password ? style.hide : style.invalid} />
+                            <FontAwesomeIcon icon={faCheck} className={validPassword ? `${style.valid}` : `${style.hide}`} />
+                            <FontAwesomeIcon icon={faTimes} className={validPassword || !password ? `${style.hide}` : `${style.invalid}`} />
                         </label>
                         <input className={style.input}
                             type="password"
@@ -217,9 +217,9 @@ const Register = () => {
                             onFocus={() => setPasswordFocus(true)}
                             onBlur={() => setPasswordFocus(false)}
                         />
-                        <p id="pwdnote" className={passwordFocus && !validPassword ? style.instructions : style.offscreen}>
+                        <p id="pwdnote" className={passwordFocus && !validPassword ? `${style.instructions}` : `${style.offscreen}`}>
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            8 to 24 characters.<br />
+                            Must contain at least 8 characters.<br />
                             Must include uppercase and lowercase letters, a number and a special character.<br />
                             Allowed special characters: <span>!</span> <span aria-label="at symbol">@</span> <span>#</span> <span>$</span> <span>%</span>
                         </p>
@@ -227,8 +227,8 @@ const Register = () => {
 
                         <label className={style.label} htmlFor="confirm_pwd">
                             Confirm Password:
-                            <FontAwesomeIcon icon={faCheck} className={validMatch && matchPassword ? style.valid : style.hide} />
-                            <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPassword ? style.hide : style.invalid} />
+                            <FontAwesomeIcon icon={faCheck} className={validMatch && matchPassword ? `${style.valid}` : `${style.hide}`} />
+                            <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPassword ? `${style.hide}` : `${style.invalid}`} />
                         </label>
                         <input className={style.input}
                             type="password"
@@ -239,7 +239,7 @@ const Register = () => {
                             onFocus={() => setMatchFocus(true)}
                             onBlur={() => setMatchFocus(false)}
                         />
-                        <p id="confirmnote" className={matchFocus && !validMatch ? style.instructions : style.offscreen}>
+                        <p id="confirmnote" className={matchFocus && !validMatch ? `${style.instructions}` : `${style.offscreen}`}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                             Must match the first password input field.
                         </p>
@@ -249,7 +249,7 @@ const Register = () => {
                     <p>
                         Already registered?<br />
                         <span className={style.line}>
-                            <Link to={"/sign-in"}>Sign in</Link>
+                            <Link style={{ color: "black", fontWeight: "bold" }} to={"/sign-in"}>sign in</Link>
                         </span>
                     </p>
                 </section>

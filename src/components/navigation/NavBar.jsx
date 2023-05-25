@@ -9,15 +9,18 @@ import { apiDelete } from '../../sherd/services/apiRequests';
 
 const NavBar = () => {
     const { currentUser, updateCurrentUser, isRequestToGetCurrentUserDone } = useContext(UserContext);
-    const [isNavOpen, setIsNavOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const navigate = useNavigate();
     const handleClick = () => {
-        if (searchValue.length)
-            navigate('/search?s=' + searchValue);
+        if (!searchValue.trim().length)
+            return;
+        if (window.location.href.includes("favorites")) {
+            navigate('/search?name=' + searchValue + '&favorites=' + true)
+        } else {
+            navigate('/search?name=' + searchValue);
+        }
     }
     const deleteUser = async () => {
-        console.log('deleteUser')
         await apiDelete(DELETE_USER_URL, {}, "sendToken");
     }
 
@@ -38,24 +41,34 @@ const NavBar = () => {
                 <div className={style.userEmail}>
                     <h2>{currentUser?.email}</h2>
                 </div>}
-            <div className={isNavOpen ? `${style.navLinks} ${style.navOpenNav}` : `${style.navLinks} ${style.navCloseNav}`} >
+            <div className={`${style.navLinks} ${style.navOpenNav}`} >
                 {isRequestToGetCurrentUserDone && !currentUser && navBarLinks.map(({ value, to }) =>
-                    <Link className={style.navLink} key={to} to={to} >{value}</Link>
+                    <Link className={style.navLink} key={value} to={to} >{value}</Link>
                 )}
                 {isRequestToGetCurrentUserDone && currentUser &&
                     userNavBarLinks.map(({ value, to }) =>
-                        <Link className={style.navLink} key={value} to={to}
+                        <span className={style.navLink} key={value}
                             onClick={async () => {
+                                if (value == "favorites") {
+                                    navigate(to);
+                                }
+                                if (value == "orders") {
+                                    navigate(to);
+                                }
                                 if (value == "delete") {
                                     await deleteUser();
+                                    navigate(to);
+                                    window.location.reload(true);
                                 }
                                 if (value == "sign out" || value == "delete") {
                                     localStorage.removeItem("Authorization");
                                     updateCurrentUser(null);
+                                    navigate(to);
+                                    window.location.reload(true);
                                 }
                             }
                             }
-                        >{value}</Link>
+                        >{value}</span>
                     )}
             </div>
         </nav>

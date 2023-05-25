@@ -6,8 +6,8 @@ const navBarLinks = [
 const userNavBarLinks = [
     { value: "favorites", to: "/favorites" },
     { value: "orders", to: "/orders" },
-    { value: "sign out", to: "/" },
-    { value: "delete", to: "/" }
+    { value: "sign out", to: "../" },
+    { value: "delete", to: "../" }
 ]
 
 export { navBarLinks, userNavBarLinks };

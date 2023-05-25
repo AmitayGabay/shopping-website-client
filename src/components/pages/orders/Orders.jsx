@@ -10,6 +10,7 @@ const Orders = () => {
 
     const getUserOrders = async () => {
         const orders = await apiGet(GET_USER_ORDERS_URL, "sendToken");
+        orders.reverse();
         setUserOrders(orders);
     }
     useEffect(() => {
@@ -20,7 +21,7 @@ const Orders = () => {
             <div style={{ backgroundImage: `url("${bgPick}")` }} className={style['bg-image']}>
                 <h1 className={style['h2-title']}>My Orders</h1>
             </div>
-            {userOrders.length && userOrders.map((order) => <Order order={order} key={order.id} getUserOrders={getUserOrders} />)}
+            {userOrders?.map((order) => <Order order={order} key={order.id} getUserOrders={getUserOrders} />)}
         </div>
     )
 }

@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import style from "./Login.module.css";
 import { Link } from "react-router-dom";
-import { apiGet, apiPost } from "../../sherd/services/apiRequests";
-import { GET_USER_BY_USERNAME_URL, SIGNIN_URL } from "../../sherd/constants/urls";
-import UserContext from "../../sherd/contexts/userContext";
+import { apiGet, apiPost } from "../../../sherd/services/apiRequests";
+import { GET_USER_BY_USERNAME_URL, SIGNIN_URL } from "../../../sherd/constants/urls";
+import UserContext from "../../../sherd/contexts/userContext";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -53,7 +53,7 @@ function Login() {
     return (
         <div className={style.logIn}>
             <section className={style.section}>
-                <p ref={errRef} className={errMsg ? style.error_mes : "offscreen"}>
+                <p ref={errRef} className={errMsg ? `${style.error_mes}` : "offscreen"}>
                     {errMsg}
                 </p>
                 <h1>Sign In</h1>
@@ -84,7 +84,7 @@ function Login() {
                     Need an Account?
                     <br />
                     <span className="line">
-                        <Link to="/sign-up">Sign up</Link>
+                        <Link style={{ color: "black", fontWeight: "bold" }} to="/sign-up">sign up</Link>
                     </span>
                 </p>
             </section>

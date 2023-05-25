@@ -60,8 +60,9 @@
 }
 
 .navLink:hover {
-    color: rgb(227, 204, 227);
+    color: rgb(209, 46, 100);
     transition: 400ms;
+    cursor: pointer;
 }
 
 .navSearchButton {

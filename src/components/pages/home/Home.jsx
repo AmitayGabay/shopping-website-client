@@ -6,6 +6,7 @@ import { apiGet } from "../../../sherd/services/apiRequests";
 import { GET_ALL_ITEMS_URL, GET_FAVORITES_URL } from "../../../sherd/constants/urls";
 import Item from '../../item/Item';
 import UserContext from "../../../sherd/contexts/userContext";
+import { updateLocalStorageData } from '../../../sherd/helpers/helper'
 
 const Home = () => {
     const { currentUser, isRequestToGetCurrentUserDone } = useContext(UserContext);
@@ -13,10 +14,9 @@ const Home = () => {
     const [itemsData, setItemsData] = useState(null);
     const [items, setItems] = useState([]);
 
-    console.log(items);
-
     const getFavorites = async () => {
         if (currentUser && itemsData) {
+            updateLocalStorageData(currentUser, itemsData);
             const favoritesData = await apiGet(GET_FAVORITES_URL, "sendToken");
             if (favoritesData.length > 0) {
                 for (let i = 0; i < favoritesData.length; i++) {

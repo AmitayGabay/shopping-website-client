@@ -11,7 +11,6 @@ function App() {
     if (updatedCurrentUser) {
       updatedCurrentUser.password = "******";
     }
-    console.log(updatedCurrentUser);
     setCurrentUser(updatedCurrentUser);
   }
   const getCurrentUser = async () => {
@@ -23,7 +22,7 @@ function App() {
         }
       }
     } catch (e) {
-      console.log("Invalid token " + JSON.stringify(e));
+      console.error("Invalid token " + JSON.stringify(e));
     }
     setIsRequestToGetCurrentUserDone(true);
   }
