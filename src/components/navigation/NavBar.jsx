@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import logo from "../../sherd/assets/online shop.png";
+import logo from "../../sherd/assets/onlineShop.png";
 import { navBarLinks, userNavBarLinks } from "./navBarLinks";
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import style from "./NavBar.module.css";

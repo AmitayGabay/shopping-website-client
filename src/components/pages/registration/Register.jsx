@@ -96,7 +96,7 @@ const Register = () => {
                 <section className={style.section}>
                     <h1>You have successfully registered!</h1>
                     <p>
-                        <Link to={"/sign-in"}>Sign in</Link>
+                        <Link style={{ color: "black", fontWeight: "bold" }} to={"/sign-in"}>Sign in</Link>
                     </p>
                 </section>
             ) : (
