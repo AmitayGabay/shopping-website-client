@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:9000/";
+const BASE_URL = "https://shopping-website-server-latest.onrender.com/";
+// const _BASE_URL = "http://localhost:9000/";
 const USER_URL = BASE_URL + "user/";
 const ITEM_URL = BASE_URL + "item/";
 const ORDER_URL = BASE_URL + "order/";
